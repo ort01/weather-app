@@ -8,7 +8,10 @@
     <Results
       class="home__results"
       v-if="weather.hasData"
-      :wData="weather.data"
+      :wDescription="weather.description"
+      :wTemp="weather.temp"
+      :wImgDescription="weather.imgDescription"
+      :cityName="cityName"
     />
     <div v-if="error" class="home__error">
       <img
@@ -47,6 +50,9 @@ export default defineComponent({
       weather: {
         data: {} as Data,
         hasData: false as boolean,
+        description: "" as string,
+        imgDescription: "" as string,
+        temp: 0 as number,
       },
       cityName: "" as string,
       error: false as boolean,
@@ -60,7 +66,12 @@ export default defineComponent({
           `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&appid=a93ae0265bb3daeb09fd3c01d03ee938`
         )
         .then((res: Response): void => {
+          console.log(res);
+
           this.weather.data = res.data;
+          this.weather.description = res.data.weather[0].description;
+          this.weather.imgDescription = res.data.weather[0].main;
+          this.weather.temp = Math.round(res.data.main.temp);
           this.weather.hasData = true;
           this.error = false;
         })

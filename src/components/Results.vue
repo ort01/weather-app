@@ -1,14 +1,14 @@
 <template>
   <div class="results">
-    <h1 class="results__cityName">{{ wData.name }}</h1>
+    <h1 class="results__cityName">{{ cityName }}</h1>
     <div>
       <img :src="getImg" alt="weather-picture" class="results__img" />
     </div>
     <div class="results__weather">
       <h3 class="results__weather--description">
-        {{ wData.weather[0].description }}
+        {{ wDescription }}
       </h3>
-      <p class="results__weather--temp">{{ Math.round(wData.main.temp) }} °C</p>
+      <p class="results__weather--temp">{{ wTemp }} °C</p>
     </div>
   </div>
 </template>
@@ -20,22 +20,36 @@ import { Data } from "../interfaces/data";
 export default defineComponent({
   name: "Results",
   props: {
-    wData: {
+    // wData: {
+    //   required: true,
+    //   type: {} as PropType<Data>,
+    // },
+    wDescription: {
       required: true,
-      type: {} as PropType<Data>,
+      type: String,
+    },
+    wTemp: {
+      required: true,
+      type: Number,
+    },
+    wImgDescription: {
+      required: true,
+      type: String,
+    },
+    cityName: {
+      required: true,
+      type: String,
     },
   },
 
   // ["wDescription", "wTemp", "wImgDescription", "cityName"],
-  // data: () => {
-  //   return {
-  //     description: this.wData.weather[0].description,
-  //   };
-  // },
+  data: () => {
+    return {};
+  },
   methods: {},
   computed: {
     getImg() {
-      switch (this.wData.weather[0].description) {
+      switch (this.wImgDescription) {
         case "Clear":
           return "../src/assets/clear-sky.png";
         case "Snow":
