@@ -1,0 +1,61 @@
+@keyframes input-focus {
+    0% {
+        background: $color-primary;
+    }
+
+    100% {
+        width: 25rem;
+        background: transparent;
+    }
+}
+
+@keyframes showResults {
+    0% {
+        transform: translateY(-5rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate360 {
+    0% {
+        transform: rotate(0);
+
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes showError {
+    0% {
+        transform: translateX(50rem);
+        opacity: 0;
+
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
+// @keyframes showPopUp {
+//     0% {
+//         transform: scale(.5);
+//         opacity: 0;
+//         visibility: hidden;
+
+//     }
+
+//     100% {
+//         transform: scale(1);
+//         opacity: 1;
+//         visibility: visible;
+//     }
+// }
