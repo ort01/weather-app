@@ -8,10 +8,7 @@
     <Results
       class="home__results"
       v-if="weather.hasData"
-      :wDescription="weather.description"
-      :wTemp="weather.temp"
-      :wImgDescription="weather.imgDescription"
-      :cityName="cityName"
+      :wData="weather.data"
     />
     <div v-if="error" class="home__error">
       <img
@@ -49,10 +46,8 @@ export default defineComponent({
     return {
       weather: {
         data: {} as Data,
-        hasData: false as boolean,
         description: "" as string,
-        imgDescription: "" as string,
-        temp: 0 as number,
+        hasData: false as boolean,
       },
       cityName: "" as string,
       error: false as boolean,
@@ -69,9 +64,6 @@ export default defineComponent({
           console.log(res);
 
           this.weather.data = res.data;
-          this.weather.description = res.data.weather[0].description;
-          this.weather.imgDescription = res.data.weather[0].main;
-          this.weather.temp = Math.round(res.data.main.temp);
           this.weather.hasData = true;
           this.error = false;
         })
@@ -122,11 +114,11 @@ export default defineComponent({
       padding: 0.5rem 1rem;
       font-size: 1.5rem;
       transition: all 0.3s;
-      animation: showResults 0.7s ease;
+      animation: showResults 0.3s ease;
     }
     &--show:hover {
-      box-shadow: 0rem 1rem 2rem rgba($color-black, 0.2);
-      transform: translateY(-0.4rem);
+      box-shadow: 0rem 1rem 1.5rem rgba($color-black, 0.2);
+      transform: translateY(-0.3rem);
     }
     &--show:active {
       box-shadow: 0rem 0.5rem 1rem rgba($color-black, 0.2);
