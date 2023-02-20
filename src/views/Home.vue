@@ -97,6 +97,7 @@ export default defineComponent({
   &__locator {
     width: fit-content;
     margin: 50rem auto 0;
+    transition: all 0.5s;
   }
   &__results {
     margin: 0 auto;

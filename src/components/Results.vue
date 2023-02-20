@@ -2,7 +2,12 @@
   <div class="results">
     <h1 class="results__cityName">{{ wData.name }}</h1>
     <div>
-      <img :src="getImg" alt="weather-picture" class="results__img" />
+      <img
+        :src="getImg"
+        alt="weather-picture"
+        class="results__img"
+        :class="getClass"
+      />
     </div>
     <div class="results__weather">
       <h3 class="results__weather--description">
@@ -51,6 +56,13 @@ export default defineComponent({
           return "../src/assets/shower-rain.png";
       }
     },
+    getClass() {
+      if (this.wData.weather[0].main === "Clear") {
+        return "rotate360";
+      } else {
+        return "cloudMovement";
+      }
+    },
   },
 });
 </script>
@@ -90,15 +102,31 @@ export default defineComponent({
   }
 
   &__img {
-    width: 90%;
+    width: 50%;
     opacity: 0.9;
-    margin-top: -5rem;
-    animation: rotate360 1s ease 1s;
+    margin-top: -2rem;
+    animation: cloudMovement 3s ease-out 1s;
+
+    @include respond(tab-land) {
+      width: 70%;
+    }
+
+    @include respond(tab-port) {
+      width: 90%;
+    }
+
+    @include respond(phone) {
+      width: 100%;
+    }
   }
   &__weather {
     text-transform: uppercase;
     letter-spacing: 0.4rem;
     margin-top: -2rem;
   }
+}
+
+.rotate360 {
+  animation: rotate360 2s ease 1s;
 }
 </style>
