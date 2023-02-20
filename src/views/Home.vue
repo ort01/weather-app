@@ -4,6 +4,7 @@
       class="home__locator"
       @keydown.enter="getData"
       @cityName="getCityName"
+      :class="{ locatorResults: weather.hasData, locatorError: error }"
     />
     <Results
       class="home__results"
@@ -95,7 +96,7 @@ export default defineComponent({
 
   &__locator {
     width: fit-content;
-    margin: 20rem auto 0rem;
+    margin: 50rem auto 0;
   }
   &__results {
     margin: 0 auto;
@@ -165,5 +166,16 @@ export default defineComponent({
       }
     }
   }
+}
+
+.locatorResults {
+  width: fit-content;
+  // position: relative;
+  // // transform: translate(-50%, 0);
+  margin: 20rem auto 0rem;
+}
+
+.locatorError {
+  margin: 20rem auto 0;
 }
 </style>
