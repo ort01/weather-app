@@ -6,7 +6,7 @@
         :src="getImg"
         alt="weather-picture"
         class="results__img"
-        :class="getClass"
+        :class="getAnimation"
       />
     </div>
     <div class="results__weather">
@@ -56,11 +56,24 @@ export default defineComponent({
           return "../src/assets/shower-rain.png";
       }
     },
-    getClass() {
-      if (this.wData.weather[0].main === "Clear") {
-        return "rotate360";
-      } else {
-        return "cloudMovement";
+    getAnimation() {
+      switch (this.wData.weather[0].main) {
+        case "Clear":
+          return "rotate360";
+        case "Snow":
+          return "cloudShake";
+        case "Clouds":
+          return "cloudMovement";
+        case "Mist":
+          return "cloudMovementLinear";
+        case "Fog":
+          return "cloudMovementLinear";
+        case "Thunderstorm":
+          return "cloudShake";
+        case "Rain":
+          return "cloudShake";
+        case "Drizzle":
+          return "cloudShake";
       }
     },
   },
@@ -90,7 +103,7 @@ export default defineComponent({
       display: block;
       width: 100%;
       height: 100%;
-      background: rgba($color-secondary, 0.9);
+      background: rgba($color-primary, 1);
       position: absolute;
       z-index: -1;
       top: -0.5rem;
@@ -105,7 +118,7 @@ export default defineComponent({
     width: 50%;
     opacity: 0.9;
     margin-top: -2rem;
-    animation: cloudMovement 3s ease-out 1s;
+    animation: horizontal-shaking 2s ease-out 1s;
 
     @include respond(tab-land) {
       width: 70%;
@@ -128,5 +141,11 @@ export default defineComponent({
 
 .rotate360 {
   animation: rotate360 2s ease 1s;
+}
+.cloudMovement {
+  animation: cloudMovement 3s ease-out 1s;
+}
+.cloudMovementLinear {
+  animation: cloudMovementLinear 3s ease-out 1s;
 }
 </style>

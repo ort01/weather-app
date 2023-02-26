@@ -33,4 +33,7 @@ body {
     background-color: $color-bg-primary
 }
 
-// ::selection {}
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}

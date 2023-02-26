@@ -11,24 +11,18 @@
 
 @keyframes showResults {
     0% {
-        transform: translateY(-5rem);
+        transform: translateY(4rem);
         opacity: 0;
+    }
+
+    90% {
+        transform: translateY(-1rem);
+        opacity: 1;
     }
 
     100% {
         transform: translateY(0);
         opacity: 1;
-    }
-}
-
-@keyframes rotate360 {
-    0% {
-        transform: rotate(0);
-
-    }
-
-    100% {
-        transform: rotate(360deg)
     }
 }
 
@@ -42,6 +36,23 @@
     100% {
         transform: translateX(0);
         opacity: 1
+    }
+}
+
+
+
+
+
+
+//wheater img animations
+@keyframes rotate360 {
+    0% {
+        transform: rotate(0);
+
+    }
+
+    100% {
+        transform: rotate(360deg)
     }
 }
 
@@ -60,6 +71,74 @@
 
     100% {
         transform: translateX(0rem) sclae(1);
+    }
+}
+
+@keyframes cloudMovementLinear {
+    0% {
+        transform: translateX(0);
+        opacity: 1
+    }
+
+    40% {
+        transform: translateX(-10rem);
+        opacity: .5
+    }
+
+    80% {
+        transform: translateX(10rem);
+        opacity: .3;
+    }
+
+    100% {
+        transform: translateX(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(1rem, 1rem) rotate(5deg)
+    }
+
+    20% {
+        transform: translate(0, 0) rotate(0eg);
+    }
+
+    30% {
+        transform: translate(-1rem, 1rem) rotate(-5deg);
+    }
+
+    40% {
+        transform: translate(0, 0) rotate(0eg);
+    }
+
+    50% {
+        transform: translate(1rem, 1rem) rotate(5deg)
+    }
+
+    60% {
+        transform: translate(0, 0) rotate(0eg);
+    }
+
+    70% {
+        transform: translate(-1rem, 1rem) rotate(-5deg);
+    }
+
+    80% {
+        transform: translate(0, 0) rotate(0eg);
+    }
+
+    90% {
+        transform: translate(1rem, 1rem) rotate(5deg)
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0eg);
     }
 }
 

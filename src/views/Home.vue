@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <Locator
-      class="home__locator"
-      @keydown.enter="getData"
-      @cityName="getCityName"
-      :class="{ locatorResults: weather.hasData, locatorError: error }"
-    />
+    <transition name="locator" appear>
+      <Locator
+        class="home__locator"
+        @keydown.enter="getData"
+        @cityName="getCityName"
+        :class="{ locatorResults: weather.hasData, locatorError: error }"
+      />
+    </transition>
     <Results
       class="home__results"
       v-if="weather.hasData"
@@ -20,9 +22,10 @@
       <p class="home__error--msg">{{ errorMsg }}</p>
     </div>
     <div class="home__popup" v-if="weather.hasData">
-      <a href="#popup" class="home__popup--show">Show more info</a>
+      <a href="#popup" class="home__popup--button gradient">Show more info</a>
       <PopUp id="popup" @background-click="togglePopUp" :wData="weather.data" />
     </div>
+    <footer class="footer"></footer>
   </div>
 </template>
 
@@ -101,32 +104,47 @@ export default defineComponent({
   }
   &__results {
     margin: 0 auto;
-    animation: showResults 0.7s ease;
+    animation: showResults 0.7s ease-in;
   }
 
   &__popup {
-    &--show:visited,
-    &--show:link {
+    &--button:visited,
+    &--button:link {
       display: inline-block;
       text-decoration: none;
       text-transform: uppercase;
       color: $color-white;
-      background: rgba($color-secondary, 0.8);
-      border-radius: 5px;
-      padding: 0.5rem 1rem;
+      background: rgba($color-primary, 1);
+      border-radius: 5rem;
+      padding: 0.5rem 2rem;
       font-size: 1.5rem;
-      transition: all 0.3s;
-      animation: showResults 0.3s ease;
+      transition: all 0.4s ease-in-out;
+      background-size: 300% 100%;
+      animation: showResults 0.7s ease-in;
     }
-    &--show:hover {
+    &--button:hover {
       box-shadow: 0rem 1rem 1.5rem rgba($color-black, 0.2);
+      background-position: 100% 0;
       transform: translateY(-0.3rem);
+      transition: all 0.4s ease-in-out;
     }
-    &--show:active {
+    &--button:active {
       box-shadow: 0rem 0.5rem 1rem rgba($color-black, 0.2);
       transform: translateY(-0.1rem);
     }
+
+    &--button.gradient {
+      background-image: linear-gradient(
+        to right,
+        $color-primary,
+        rgb(192, 192, 192),
+        $color-primary
+      );
+      box-shadow: 0 4px 15px 0 rgba($color-light-blue, 0.75);
+    }
   }
+
+  //error
 
   &__error {
     width: 50%;
@@ -169,14 +187,30 @@ export default defineComponent({
   }
 }
 
+//footer
+
+.footer {
+  height: 10rem;
+}
+
+//animations
+
 .locatorResults {
-  width: fit-content;
-  // position: relative;
-  // // transform: translate(-50%, 0);
   margin: 20rem auto 0rem;
+  animation: showResults 0.7s ease-in;
 }
 
 .locatorError {
   margin: 20rem auto 0;
+}
+
+.locator {
+  &-enter-from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  &-enter-active {
+    transition: all 0.6s ease;
+  }
 }
 </style>
