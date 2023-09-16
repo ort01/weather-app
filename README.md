@@ -10,3 +10,6 @@ Main goal of this project was to practice technologies listed down below.
 - REST API
    - Axios
 - Vite
+
+## Deployed app
+https://weather-8m9ujlp6o-ort01.vercel.app/
