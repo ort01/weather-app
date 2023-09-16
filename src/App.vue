@@ -4,7 +4,7 @@
   <footer class="footer"></footer>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "App",
   components: {},
@@ -17,5 +17,3 @@ export default {
 </script>
 
 
-<style lang="scss">
-</style>
