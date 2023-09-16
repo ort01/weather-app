@@ -8,19 +8,23 @@
         :class="{ locatorResults: weather.hasData, locatorError: error }"
       />
     </transition>
-    <Results
-      class="home__results"
-      v-if="weather.hasData"
-      :wData="weather.data"
-    />
-    <div v-if="error" class="home__error">
-      <img
-        src="../assets/error-televes.jpg"
-        alt="error"
-        class="home__error--img"
+    <transition name="results" mode="out-in">
+      <Results
+        class="home__results"
+        v-if="weather.hasData"
+        :wData="weather.data"
       />
-      <p class="home__error--msg">{{ errorMsg }}</p>
-    </div>
+    </transition>
+    <transition name="error" mode="out-in">
+      <div v-if="error" class="home__error">
+        <img
+          src="../assets/error-televes.jpg"
+          alt="error"
+          class="home__error--img"
+        />
+        <p class="home__error--msg">{{ errorMsg }}</p>
+      </div>
+    </transition>
     <div class="home__popup" v-if="weather.hasData">
       <a href="#popup" class="home__popup--button gradient">Show more info</a>
       <PopUp id="popup" @background-click="togglePopUp" :wData="weather.data" />
@@ -103,8 +107,9 @@ export default defineComponent({
     transition: all 0.5s;
   }
   &__results {
+    position: relative;
     margin: 0 auto;
-    animation: showResults 0.7s ease-in;
+    // animation: showResults 0.7s ease-in;
   }
 
   &__popup {
@@ -120,7 +125,7 @@ export default defineComponent({
       font-size: 1.5rem;
       transition: all 0.4s ease-in-out;
       background-size: 300% 100%;
-      animation: showResults 0.7s ease-in;
+      // animation: showResults 0.7s ease-in;
     }
     &--button:hover {
       box-shadow: 0rem 1rem 1.5rem rgba($color-black, 0.2);
@@ -148,7 +153,7 @@ export default defineComponent({
 
   &__error {
     width: 50%;
-    animation: showError 0.7s ease;
+    // animation: showError 0.7s ease;
     font-size: 4rem;
     margin: 10rem auto 0;
 
@@ -204,6 +209,8 @@ export default defineComponent({
   margin: 20rem auto 0;
 }
 
+// vue transitions
+
 .locator {
   &-enter-from {
     opacity: 0;
@@ -211,6 +218,35 @@ export default defineComponent({
   }
   &-enter-active {
     transition: all 0.6s ease;
+  }
+}
+
+.results {
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-15rem);
+  }
+  &-leave-active {
+    transition: all 0.3s ease-in;
+    position: absolute;
+  }
+}
+
+.error {
+  &-enter-from {
+    opacity: 0;
+    transform: translateX(20rem);
+  }
+  &-enter-active {
+    transition: all 0.6s ease;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-20rem);
+  }
+  &-leave-active {
+    transition: all 0.3s ease-in;
+    position: absolute;
   }
 }
 </style>
