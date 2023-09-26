@@ -34,21 +34,21 @@ export default defineComponent({
     getImg() {
       switch (this.wData.weather[0].main) {
         case "Clear":
-          return "../../public/clear-sky.png";
+          return "../../public/static/images/clear-sky.png";
         case "Snow":
-          return "../../public/snow.png";
+          return "../../public/static/images/snow.png";
         case "Clouds":
-          return "../../public/few-clouds.png";
+          return "../../public/static/images/few-clouds.png";
         case "Mist":
-          return "../../public/mist.png";
+          return "../../public/static/images/mist.png";
         case "Fog":
-          return "../../public/mist.png";
+          return "../../public/static/images/mist.png";
         case "Thunderstorm":
-          return "../../public/thunderstorm.png";
+          return "../../public/static/images/thunderstorm.png";
         case "Rain":
-          return "../../public/rain.png";
+          return "../../public/static/images/rain.png";
         case "Drizzle":
-          return "../../public/shower-rain.png";
+          return "../../public/static/images/shower-rain.png";
       }
     },
     getAnimation() {

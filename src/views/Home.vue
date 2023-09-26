@@ -9,7 +9,7 @@
     </transition>
     <transition name="error" mode="out-in">
       <div v-if="error" class="home__error">
-        <img src="../../public/error-televes.jpg" alt="error-img" class="home__error--img" />
+        <img src="../../public/static/images/error-televes.jpg" alt="error-img" class="home__error--img" />
         <p class="home__error--msg">{{ errorMsg }}</p>
       </div>
     </transition>
