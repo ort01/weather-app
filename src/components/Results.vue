@@ -2,12 +2,7 @@
   <div class="results">
     <h1 class="results__cityName">{{ wData.name }}</h1>
     <div>
-      <img
-        :src="getImg"
-        alt="weather-picture"
-        class="results__img"
-        :class="getAnimation"
-      />
+      <img :src="getImg" alt="weather-picture" class="results__img" :class="getAnimation" />
     </div>
     <div class="results__weather">
       <h3 class="results__weather--description">
@@ -39,21 +34,21 @@ export default defineComponent({
     getImg() {
       switch (this.wData.weather[0].main) {
         case "Clear":
-          return "../src/assets/clear-sky.png";
+          return "../public/clear-sky.png";
         case "Snow":
-          return "../src/assets/snow.png";
+          return "../public/assets/snow.png";
         case "Clouds":
-          return "../src/assets/few-clouds.png";
+          return "../public/few-clouds.png";
         case "Mist":
-          return "../src/assets/mist.png";
+          return "../public/mist.png";
         case "Fog":
-          return "../src/assets/mist.png";
+          return "../public/mist.png";
         case "Thunderstorm":
-          return "../src/assets/thunderstorm.png";
+          return "../public/thunderstorm.png";
         case "Rain":
-          return "../src/assets/rain.png";
+          return "../public/rain.png";
         case "Drizzle":
-          return "../src/assets/shower-rain.png";
+          return "../public/shower-rain.png";
       }
     },
     getAnimation() {
@@ -132,6 +127,7 @@ export default defineComponent({
       width: 100%;
     }
   }
+
   &__weather {
     text-transform: uppercase;
     letter-spacing: 0.4rem;
@@ -142,9 +138,11 @@ export default defineComponent({
 .rotate360 {
   animation: rotate360 2s ease 1s;
 }
+
 .cloudMovement {
   animation: cloudMovement 3s ease-out 1s;
 }
+
 .cloudMovementLinear {
   animation: cloudMovementLinear 3s ease-out 1s;
 }
